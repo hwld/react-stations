@@ -13,11 +13,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
-      - name: npm install
+      - name: yarn install
         run: |
-          npm install
+          yarn install
       - name: Build App
-        run: npm run build
+        run: yarn run build
       - name: App Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:

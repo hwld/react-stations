@@ -3,6 +3,7 @@
 import * as React from 'react';
 import './App.css';
 import { Description } from './Description';
+import { DogListContainer } from './DogListContainer';
 import { Header } from './Header';
 
 /**
@@ -14,6 +15,7 @@ export const App = () => {
     <div>
       <Header />
       <Description />
+      <DogListContainer />
     </div>
   )
 }

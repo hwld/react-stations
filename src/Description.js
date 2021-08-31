@@ -13,12 +13,12 @@ export const Description = () => {
   }
 
   return (
-    <div className="viewer-container">
-      <div className="description">
+    <div className="description">
+      <div className="description-text">
         <p>犬の画像を表示するサイトです</p>
       </div>
-      <div className="viewer">
-        <DogImage url={dogUrl} />
+      <div className="description-viewer">
+        <DogImage url={dogUrl} className="viewer-dog" />
         <button className="button viewer-button" onClick={handleChangeDogImage}>
           変更
         </button>

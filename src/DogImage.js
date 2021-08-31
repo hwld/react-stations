@@ -2,11 +2,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 // DO NOT DELETE
-export const DogImage = ({ url }) => {
+export const DogImage = ({ url, className }) => {
   return (
-    <img src={url} height="300"></img>
+    <img className={className} src={url} ></img>
   );
 }
 DogImage.propTypes = {
-  url: PropTypes.string.isRequired
+  url: PropTypes.string.isRequired,
+  className: PropTypes.string,
 }

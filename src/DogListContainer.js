@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BreedsSelect } from './BreedsSelect';
+import { DogImage } from './DogImage';
 
 // DO NOT DELETE
 export const DogListContainer = () => {
-  const [breeds, setBreeds] = React.useState([]);
-  const [selectedBreed, setSelectedBreed] = React.useState("");
+  const [breeds, setBreeds] = useState([]);
+  const [selectedBreed, setSelectedBreed] = useState("");
+  const [dogUrls, setDogUrls] = useState([]);
 
   const handleSelectBreed = (breed) => {
     setSelectedBreed(breed);
   }
 
-  React.useEffect(()=>{
+  useEffect(()=>{
     const fetchBreeds = async () => {
       const res = await fetch("https://dog.ceo/api/breeds/list/all");
       const data = await res.json();
@@ -22,12 +24,28 @@ export const DogListContainer = () => {
     fetchBreeds();
   },[]);
 
+  const handleClick = async () => {
+    const res = await fetch(`https://dog.ceo/api/breed/${selectedBreed}/images/random/12`);
+    const data = await res.json();
+    setDogUrls(data.message);
+  }
+
   return (
-    <div>
-      <BreedsSelect 
-        breeds={breeds}
-        selectedBreed={selectedBreed} 
-        onSelectBreed={handleSelectBreed}/>
+    <div className="container">
+      <div className="container-select">
+        <p>犬種: </p>
+        <BreedsSelect 
+          className="breeds-select"
+          breeds={breeds}
+          selectedBreed={selectedBreed} 
+          onSelectBreed={handleSelectBreed}/>
+        <button className="display-button button" onClick={handleClick}>表示</button>
+      </div>
+      <div className="container-images">
+        {dogUrls.map(url => 
+            <DogImage key={url} url={url} className="container-item" />
+        )}
+      </div>
     </div>
   );
 }
